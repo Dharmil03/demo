@@ -1,0 +1,100 @@
+<div id="title">
+    Registration Form
+</div>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label>First Name</label>
+    <input type="text" formControlName="firstName" placeholder="Enter first name">
+    <div *ngIf="submitted && f['firstName'].errors">
+      <small *ngIf="f['firstName'].errors['required']">First name is required</small>
+      <small *ngIf="f['firstName'].errors['minlength']">Minimum 4 char</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Last Name</label>
+    <input type="text" formControlName="lastName" placeholder="Enter last name">
+    <div *ngIf="submitted && f['lastName'].errors">
+      <small>Last name is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" formControlName="email" placeholder="Enter email">
+    <div *ngIf="submitted && f['email'].errors">
+      <small *ngIf="f['email'].errors['required']">Email is required</small>
+      <small *ngIf="f['email'].errors['email']">Invalid email</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Phone</label>
+    <input type="text" formControlName="phone" placeholder="10 digit phone number">
+    <div *ngIf="submitted && f['phone'].errors">
+      <small *ngIf="f['phone'].errors['required']">Phone is required</small>
+      <small *ngIf="f['phone'].errors['pattern']">Phone must be 10 digits</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Address</label>
+    <input type="text" formControlName="address" placeholder="Enter address">
+    <div *ngIf="submitted && f['address'].errors">
+      <small>Address is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label>City</label>
+    <select formControlName="city">
+      <option value="">-- Select City --</option>
+      <option value="New York">New York</option>
+      <option value="London">London</option>
+      <option value="Paris">Paris</option>
+      <option value="Tokyo">Tokyo</option>
+    </select>
+    <div *ngIf="submitted && f['city'].errors">
+      <small>City is required</small>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="userData">
+  <h3>Submitted Data</h3>
+  <pre>{{ userData | json }}</pre>
+</div>
+
+
+<button (click)="getAllUsers()" type ="get">Get All Users</button>
+
+<table *ngIf="usersList.length > 0" border="1" style="margin-top: 20px;">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of usersList">
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.address }}</td>
+      <td>{{ user.city }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
