@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5265:5265"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=ep-frosty-cake-af4rluz8-pooler.c-2.us-west-2.aws.neon.tech;Port=5432;Database=neondb;Username=neondb_owner;Password=npg_sCTnbK0HBkE1;SSL Mode=Require;Trust Server Certificate=true;
+    restart: always
+
+  frontend:
+    build:
+      context: ./React
+      dockerfile: Dockerfile
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+    restart: always
+
+

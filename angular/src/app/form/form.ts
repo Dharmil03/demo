@@ -39,7 +39,7 @@ export class FormComponent implements OnInit {
 
     if (this.userForm.invalid) return;
 
-    this.http.post('http://localhost:5265/api/users', this.userForm.value)
+    this.http.post('http://backend:5265/api/users', this.userForm.value)
       .subscribe({
         next: (res) => {
           this.userData = res;
@@ -56,7 +56,7 @@ export class FormComponent implements OnInit {
 
   // New method to get all users
   getAllUsers(): void {
-    this.http.get<any[]>('http://localhost:5265/api/users')
+    this.http.get<any[]>('http://backend:5265/api/users')
       .subscribe({
         next: (res) => {
           this.usersList = res;

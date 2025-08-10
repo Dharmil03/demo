@@ -1,0 +1,83 @@
+/* Reset some default margins and padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+}
+
+/* Center the form container vertically and horizontally */
+form {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+
+  /* Center vertically */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Style for form labels and inputs */
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Style the submit button */
+button {
+  background-color: #4a90e2;
+  border: none;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #357ABD;
+}
+
+/* Error and success message styling */
+p {
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+p[style*="color: red"] {
+  color: #d9534f;
+}
+
+p[style*="color: green"] {
+  color: #5cb85c;
+}
+
