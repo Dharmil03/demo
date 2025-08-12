@@ -1,5 +1,5 @@
 <div id="title">
-    Registration Form
+  Registration Form
 </div>
 
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -9,7 +9,7 @@
     <input type="text" formControlName="firstName" placeholder="Enter first name">
     <div *ngIf="submitted && f['firstName'].errors">
       <small *ngIf="f['firstName'].errors['required']">First name is required</small>
-      <small *ngIf="f['firstName'].errors['minlength']">Minimum 4 char</small>
+      <small *ngIf="f['firstName'].errors['minlength']">Minimum 2 characters</small>
     </div>
   </div>
 
@@ -61,16 +61,12 @@
     </div>
   </div>
 
-  <button type="submit">Submit</button>
+  <button type="submit">
+    {{ editMode ? 'Update User' : 'Create User' }}
+  </button>
 </form>
 
-<div *ngIf="userData">
-  <h3>Submitted Data</h3>
-  <pre>{{ userData | json }}</pre>
-</div>
-
-
-<button (click)="getAllUsers()" type ="get">Get All Users</button>
+<button (click)="getAllUsers()" type="button">Get All Users</button>
 
 <table *ngIf="usersList.length > 0" border="1" style="margin-top: 20px;">
   <thead>
@@ -81,6 +77,7 @@
       <th>Phone</th>
       <th>Address</th>
       <th>City</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -91,9 +88,13 @@
       <td>{{ user.phone }}</td>
       <td>{{ user.address }}</td>
       <td>{{ user.city }}</td>
+      <td>
+        <button (click)="editUser(user)">Edit</button>
+      </td>
     </tr>
   </tbody>
 </table>
+
 
 
 

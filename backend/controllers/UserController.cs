@@ -49,7 +49,7 @@ namespace MyApi.Controllers
                 await _context.SaveChangesAsync();
 
                 return Ok(new { message = "User created ", data = user });
-                
+
             }
             catch (Exception ex)
             {
@@ -83,6 +83,29 @@ namespace MyApi.Controllers
                 return StatusCode(500, new { message = "An error occurred while updating the user.", error = ex.Message });
             }
         }
+        
+
+        // DELETE
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            try
+            {
+                var user = await _context.Users.FindAsync(id);
+                if (user == null)
+                    return NotFound(new { message = "User not found." });
+
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "User deleted successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while deleting the user.", error = ex.Message });
+            }
+        }
+
     }
 }
 
